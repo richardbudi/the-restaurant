@@ -1,0 +1,17 @@
+.description {
+  display: flex;
+}
+
+
+img{
+  max-width: 300px;
+  border-radius: 5px;
+}
+
+h2{
+  border-radius: 5px;
+}
+
+.btn {
+  margin: 10px 0px 0px 10px;
+}

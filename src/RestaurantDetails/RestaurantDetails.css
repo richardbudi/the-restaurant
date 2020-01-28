@@ -1,0 +1,18 @@
+.detail{
+  height: 100vh;
+}
+
+.description {
+  display: flex;
+  padding: 100px 20px;
+
+}
+
+img{
+  max-width: 500px;
+  border-radius: 5px;
+}
+
+.btn {
+  margin: 10px 0px 0px 10px;
+}

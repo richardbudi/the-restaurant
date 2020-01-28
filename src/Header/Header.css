@@ -1,0 +1,17 @@
+#showcase {
+  background: #333 url('../img/restaurant.jpg') no-repeat center center/cover;
+  height: 100vh;
+  color: #fff;
+}
+
+#showcase .showcase-content {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 0 2rem;
+  /* Overlay */
+  background-color: rgba(0,0,0,0.4);
+}

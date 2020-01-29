@@ -1,13 +1,20 @@
-.description {
-  display: flex;
-}
-
-
 img{
-  max-width: 500px;
+  max-width: 200px;
   border-radius: 5px;
 }
-
+#options{
+  display: flex;
+  justify-content: center;
+  padding-bottom: 0.5rem;
+}
+ 
 .btn {
   margin: 10px 0px 0px 10px;
+}
+
+@media only screen and (max-width: 800px) {
+  #options #sort, #options #filter{
+    display: flex;
+    flex-direction: column;
+  }
 }

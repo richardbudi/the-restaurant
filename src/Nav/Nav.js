@@ -7,7 +7,6 @@ const Nav = () => {
   return (
     <nav id="navbar">
       <h1 className="logo">
-       
         <a href="/">
         <span className="text-primary">
         <FontAwesomeIcon icon={faUtensils}/> The</span> <span className="text-secondary">Restaurants</span> 

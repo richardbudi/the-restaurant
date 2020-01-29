@@ -1,19 +1,15 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import Header from './Header/Header';
 import Contact from './ContactUs/ContactUs';
 import RestaurantList from './RestaurantList/RestaurantList';
 import Nav from './Nav/Nav';
-import RestaurantItem from './RestaurantItem/RestaurantItem'
 import RestaurantDetails from './RestaurantDetails/RestaurantDetails';
-import {restaurants} from './ContactUs/dummyResto'
 
 class App extends Component{
 
   state = {
     url: 'http://localhost:3000/api/list',
-    restaurants: restaurants,
+    restaurants: [],
     error: '',
     pageIndex:1,
     details_id:1
@@ -28,12 +24,11 @@ class App extends Component{
 
       if (jsonData.length === 0) {
         this.setState(() => {
-          return {error: 'sorry, but your search did not return any results'};
+          return {error: 'Sorry, but there is something wrong with the server'};
         });
       } else {
         this.setState({
-          restaurants: jsonData,
-  
+          restaurants: jsonData
         });
       }
     } catch (err) {
@@ -47,16 +42,17 @@ class App extends Component{
 
   displayPage = index => {
     switch (index) {
-      default:
       case 1:
         return (
           <RestaurantList
            restaurants = {this.state.restaurants}
            error ={this.state.error}
            handleDetails ={this.handleDetails}
-           handleSortRating = {this.handleSortRating}
+           handleSortRatingAscending = {this.handleSortRatingAscending}
+           handleSortRatingDescending = {this.handleSortRatingDescending}
            handleSortPrice={this.handleSortPrice}
-           filterByRating={this.filterByRating}
+           filterByRatingLow={this.filterByRatingLow}
+           filterByRatingHigh={this.filterByRatingHigh}
           />
           
         );
@@ -65,12 +61,9 @@ class App extends Component{
           <RestaurantDetails
           id = {this.state.details_id}
           handleIndex ={this.handleIndex}/>
-        
         );
     }
   };
-
-
 
   handleIndex = index =>{
     this.setState({
@@ -85,7 +78,7 @@ class App extends Component{
     })
   }
  
-  handleSortRating =()=>{
+  handleSortRatingAscending =()=>{
   this.setState({
     restaurants: this.state.restaurants.sort((a,b)=>{
       return(a.rating-b.rating)
@@ -94,24 +87,28 @@ class App extends Component{
   console.log(this.state.restaurants);
 }
 
- 
-handleSortPrice =()=>{
+  handleSortRatingDescending =()=>{
   this.setState({
-    restaurants: this.state.restaurants.sort((a,b)=>{
-      return(a.id-b.id)
+    restaurants: this.state.restaurants.sort((b,a)=>{
+      return(a.rating-b.rating)
     })
   })
   console.log(this.state.restaurants);
 }
-
-filterByRating =()=>{
+ 
+filterByRatingLow =()=>{
   this.setState({
-    restaurants:this.state.restaurants.filter(filtered => filtered.rating>4.2)
+    restaurants:this.state.restaurants.filter(filtered => filtered.rating<4)
   })
   console.log(this.state.restaurants);
-  
 }
-  
+filterByRatingHigh =()=>{
+  this.setState({
+    restaurants:this.state.restaurants.filter(filtered => filtered.rating>4)
+  })
+  console.log(this.state.restaurants);
+}
+
   render() {
     return (
      <div >

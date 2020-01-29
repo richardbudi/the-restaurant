@@ -40,6 +40,9 @@ p {
 .text-secondary {
   color: #f4f4f4;
 }
+.text-danger {
+  color: #f70707;
+}
 
 .bg-light {
   background: #f4f4f4;
@@ -68,10 +71,6 @@ p {
   line-height: 1.1;
 }
 
-.lead {
-  font-size: 1.3rem;
-  margin-bottom: 2rem;
-}
 
 .py-1 { padding: 1.5rem 0; }
 .py-2 { padding: 2rem 0; }
@@ -101,14 +100,4 @@ p {
 .btn-dark {
   background: #333;
   color: #fff;
-}
-
-.list {
-  margin: 0.5rem 0;
-  list-style: none;
-}
-
-.list li {
-  padding: 0.5rem 0;
-  border-bottom: #444 dotted 1px;
 }

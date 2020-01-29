@@ -1,47 +1,50 @@
 import React, {Component} from 'react';
 import RestaurantItem from '../RestaurantItem/RestaurantItem';
-import Nav from '../Nav/Nav'
 import Header from '../Header/Header'
+import './RestaurantList.css';
+import {  faSortAmountUp, faSortAmountDown } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 class RestaurantList extends Component {
+
 render(){
   const {
     restaurants,
     error,
     handleDetails,
-    handleSortRating,
-    handleSortPrice,
-    filterByRating
+    handleSortRatingAscending,
+    handleSortRatingDescending,
+    filterByRatingLow,
+    filterByRatingHigh
   } = this.props
-
+  
 
   return(
     <div >
     <Header />
     <h2 id="restaurant-list" className="m-heading text-center py-2">List of Restaurants</h2>
-      <button className="sort-rating" onClick={handleSortRating}>Sort by Rating</button>
-      <button className="sort-price" onClick={handleSortPrice}>Sort by Price</button>
-      <button className="filter-rating" onClick={filterByRating}>Filter by Rating</button>
-
-    <div className="row">
-        <div className="container my-3">
-          <div className="row">
-            <div className="col-10 mx-auto col-md-6 text-center text-uppercase mb-3" />
-            <div className="row">
-              {error ? (
-                <h1 className="text-danger text-center">{error}</h1>
-              ) : (
-              restaurants.map(resto => {
-                  return <RestaurantItem 
-                  handleDetails={()=>handleDetails(0, resto.id)}
-                  resto={resto}/>;
-                })
-              )}
-             
-            </div>
-          </div>
-        </div>
+    <div id="options">
+      <div id="sort">
+        <button className="sort-rating btn" onClick={handleSortRatingAscending}>Sort by Rating <FontAwesomeIcon icon={faSortAmountDown}/></button>
+        <button className="sort-price btn" onClick={handleSortRatingDescending}>Sort by Rating <FontAwesomeIcon icon={faSortAmountUp}/></button>
       </div>
+      <div id="filter">
+        <button className="filter-rating1 btn" onClick={filterByRatingLow}>Filter Rating {"<"} 4</button>
+        <button className="filter-rating2 btn" onClick={filterByRatingHigh}>Filter Rating {">"} 4</button>    
       </div>
+    </div>
+      <div className="container">
+        {error ? (
+            <h1 className="text-danger text-center">{error}</h1>
+          ) : (
+          restaurants.map(resto => {
+            return <RestaurantItem 
+            handleDetails={()=>handleDetails(0, resto.id)}
+            resto={resto}/>;
+          })
+        )}
+      </div>
+    </div>
   )
 }
 }

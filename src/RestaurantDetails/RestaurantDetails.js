@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { faDollarSign } from "@fortawesome/free-solid-svg-icons";
+import { faDollarSign, faMinus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import './RestaurantDetails.css';
  
@@ -30,7 +30,6 @@ class RestaurantDetails extends Component{
   render() {
     const  {
       opening_hours,
-      id,
       name,
       photo,
       phone_number,
@@ -38,13 +37,8 @@ class RestaurantDetails extends Component{
       google_maps_url,
       website
     } = this.state.details
-
-
     
-    // Interface fot the opening hours
-    let output = ''; 
-    // openingHours.forEach(element => output += `<li> ${element}</li>`);
-
+    // Number of dollars icon for the price level
     let dollars = "";
 
     switch(this.state.details.price_level) {
@@ -67,53 +61,35 @@ class RestaurantDetails extends Component{
           ;
           break;
     }
-    // console.log(opening_hours);
-    // var array = opening_hours.split(",");
-
-    
+     
     return(
   
       <div className="detail">
         <div>
-          <h2 class="bg-primary px-3">
-          {id}. {name}
+          <h2 class="bg-primary">
+          {name}
           </h2>      
         </div>
-        <div class="description p-1 bg-light">
-            <div class="description-img px-1">              
+        <div class="description p-1">
+            <div class="description-image px-1">              
               <img src={photo} alt="food"/>
             </div>
-            <div class="description-detail">
+            <div class="description-detail-list">
               <h4>Price: {dollars}</h4>
               <h4>Rating: {rating}</h4>
               <h4>Phone Number: {phone_number}</h4>
               <h4 >Opening Hours: </h4>
               <ul class = "px-1">
-              {/* {opening_hours.map((item, index) => {
-                  return (
-                    <li className="list-group-item text-slanted" key={index}>
-                      {item}
-                    </li>
-                  );
-                })} */}
-                {opening_hours}
-                  
-
+              {opening_hours}              
               </ul>
               <a href={google_maps_url} target="_blank" class="btn">Open Location</a>
               <a href={website} target="_blank" class="btn">Website</a>
             </div>
         </div>
       </div>           
-    
-    
     ) ;
   }
 
-  // showDetail(){
-  //   <Link>
-  //   </Link>
-  // }
  }
 
 export default RestaurantDetails;
